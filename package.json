@@ -1,0 +1,17 @@
+{
+  "name": "react-poc",
+  "version": "1.0.0",
+  "description": "Just a test",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.13.1",
+    "express": "^4.13.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "author": "vinids86",
+  "license": "ISC"
+}
