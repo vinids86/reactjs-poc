@@ -2,31 +2,58 @@ var React = require('react');
 var Navbar = require('react-bootstrap').Navbar;
 var Alert = require('react-bootstrap').Alert;
 var Input = require('react-bootstrap').Input;
+var Button = require('react-bootstrap').Button;
 var ButtonInput = require('react-bootstrap').ButtonInput;
+
+var AlertManyChanges = React.createClass({
+	getInitialState: function() {
+		return {
+			alertVisible: true
+		};
+	},
+
+	render: function() {
+		if(this.state.alertVisible) {
+		return (
+			<Alert bsStyle='warning' onDismiss={this.handleAlertDismiss}>
+	          <h4>Meça suas alterações parça!</h4>
+	          <p>Exemplo de alert warning.</p>
+	          <p>
+	            <Button bsStyle='warning'>Take this action</Button>
+	            <span> or </span>
+	            <Button onClick={this.handleAlertDismiss}>Hide Alert</Button>
+	          </p>
+	        </Alert>
+		);
+		}
+		return (
+			<Button onClick={this.handleAlertShow}>Show Alert</Button>
+			);
+	},
+
+	handleAlertDismiss() {
+		this.setState({alertVisible: false});
+	},
+
+	handleAlertShow() {
+		this.setState({alertVisible: true});
+	}
+
+});
 
 var Form = React.createClass({
 	
 	render: function() {
 		const inputTypeInstance = (
-		  <form>
-		    <Input type='text' label='Text' placeholder='Enter text' />
-		    <Input type='email' label='Email Address' placeholder='Enter email' />
-		    <Input type='password' label='Password' />
-		    <Input type='file' label='File' help='[Optional] Block level help text' />
-		    <Input type='checkbox' label='Checkbox' checked readOnly />
-		    <Input type='radio' label='Radio' checked readOnly />
-		    <Input type='select' label='Select' placeholder='select'>
-		      <option value='select'>select</option>
-		      <option value='other'>...</option>
-		    </Input>
-		    <Input type='select' label='Multiple Select' multiple>
-		      <option value='select'>select (multiple)</option>
-		      <option value='other'>...</option>
-		    </Input>
-		    <Input type='textarea' label='Text Area' placeholder='textarea' />
-		    <ButtonInput value='Button Input' />
-		    <ButtonInput type='reset' value='Reset Button' />
-		    <ButtonInput type='submit' value='Submit Button' />
+		  <form className='form-horizontal'>
+		    <Input bsStyle='success' type='text' label='Nome' labelClassName='col-xs-2' wrapperClassName='col-xs-10' />
+		    <Input bsStyle='warning' type='text' label='Endereço' labelClassName='col-xs-2' wrapperClassName='col-xs-10' />
+		    <Input bsStyle='error' type='text' label='Outro campo' labelClassName='col-xs-2' wrapperClassName='col-xs-10' />
+		    <Input type='textarea' label='Textarea' labelClassName='col-xs-2' wrapperClassName='col-xs-10' />
+		    <Input label="Sexo" labelClassName="col-sm-2" wrapperClassName="col-sm-10">
+			    <Input name="sexo" type="radio" ref="Masculino" value="masculino" label="Masculino" groupClassName="col-sm-2" />
+			    <Input name="sexo" type="radio" ref="Feminino" value="feminino" label="Feminino" groupClassName="col-sm-2" />
+			</Input>
 		  </form>
 		);
 		return (
@@ -42,9 +69,7 @@ var App = React.createClass({
 		return (
 			<div>
 				<Navbar brand='SACA-NAGEM' toggleNavKey={0}></Navbar>
-				<Alert bsStyle='warning'>
-					<strong>Meça suas alterações parça!</strong> Exemplo de alert warning.
-				</Alert>
+				<AlertManyChanges />
 				<Form />
 			</div>
 		);
