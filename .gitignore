@@ -1,0 +1,6 @@
+node_modules
+lib/
+*.log
+/public/js/bundle.js
+/public/js/bundle.min.js
+/npm-debug.log
